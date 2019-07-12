@@ -14,9 +14,9 @@ from io import StringIO
 import multiprocessing.dummy as multiprocessing
 from ctypes import c_int
 
-from . import utils
-from .control_thread import ControlThread
-from .download import download
+from minerl.dependencies.pySmartDL.pySmartDL import utils
+from minerl.dependencies.pySmartDL.pySmartDL.control_thread import ControlThread
+from minerl.dependencies.pySmartDL.pySmartDL.download import download
 
 __all__ = ['SmartDL', 'utils']
 __version_mjaor__ = 1

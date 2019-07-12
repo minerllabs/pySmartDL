@@ -1,4 +1,2 @@
-from .pySmartDL import SmartDL, HashFailedException, CanceledException
-from . import utils
-
-__version__ = pySmartDL.__version__
+from minerl.dependencies.pySmartDL.pySmartDL.pySmartDL import SmartDL, HashFailedException, CanceledException
+from minerl.dependencies.pySmartDL.pySmartDL import utils

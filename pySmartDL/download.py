@@ -2,7 +2,7 @@ import os
 import urllib.request, urllib.error, urllib.parse
 import time
 
-from . import utils
+from minerl.dependencies.pySmartDL.pySmartDL import utils
 
 def download(url, dest, startByte=0, endByte=None, headers=None, timeout=4, attempt_resume=True, shared_var=None, thread_shared_cmds=None, logger=None, retries=3):
     "The basic download function that runs at each thread."

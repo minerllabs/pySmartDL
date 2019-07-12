@@ -1,7 +1,7 @@
 import threading
 import time
 
-from . import utils
+from minerl.dependencies.pySmartDL.pySmartDL import utils
 
 class ControlThread(threading.Thread):
     "A class that shows information about a running SmartDL object."
