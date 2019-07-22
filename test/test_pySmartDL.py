@@ -1,3 +1,5 @@
+import pySmartDL
+
 import os
 import sys
 import random
@@ -13,7 +15,6 @@ import socket
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import pySmartDL
 
 class TestSmartDL(unittest.TestCase):
     def setUp(self):
