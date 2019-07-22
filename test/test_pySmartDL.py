@@ -1,4 +1,4 @@
-from .. import pySmartDL
+import pySmartDL
 
 import os
 import sys
