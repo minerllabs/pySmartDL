@@ -1,4 +1,4 @@
-import pySmartDL
+import minerl.dependencies.pySmartDL.pySmartDL as pySmartDL
 
 import os
 import sys
