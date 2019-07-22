@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-import pySmartDL
+from . import pySmartDL
 
 extra = {}
 release_posttag = ""
