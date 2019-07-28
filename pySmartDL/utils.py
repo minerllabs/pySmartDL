@@ -213,6 +213,7 @@ def time_human(duration, fmt_short=False, show_ms=False):
     :type show_ms: bool
     :rtype: string
     '''
+
     ms = int(duration % 1 * 1000)
     duration = int(duration)
     if duration == 0 and (not show_ms or ms == 0):
