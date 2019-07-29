@@ -208,8 +208,13 @@ class SmartDL:
             try:
                 sums_url = "%s/%s" % (folder, filename)
                 obj = urllib.request.urlopen(sums_url)
-                data = obj.read().split('\n')
-                obj.close()
+                obj_bytes = obj.read()
+                try:
+                    data = obj_bytes.decode().split('\n')
+                except AttributeError:
+                    data = obj_bytes.split('\n')
+                finally:
+                    obj.close()
 
                 for line in data:
                     if orig_basename.lower() in line.lower():
