@@ -55,14 +55,14 @@ class TestSmartDL(unittest.TestCase):
         
     def test_hash(self):
         obj = pySmartDL.SmartDL(self.res_7za920_mirrors, progress_bar=False, connect_default_logger=self.enable_logging)
-        obj.add_hash_verification('sha256' , self.res_7za920_hash)  # good hash
+        obj.add_hash_verification('sha256', self.res_7za920_hash)  # good hash
         obj.start(blocking=False)  # no exceptions
         obj.wait()
         
         self.assertTrue(obj.isSuccessful())
         
         obj = pySmartDL.SmartDL(self.res_7za920_mirrors, progress_bar=False, connect_default_logger=self.enable_logging)
-        obj.add_hash_verification('sha256' ,'a'*64)  # bad hash
+        obj.add_hash_verification('sha256', 'a'*64)  # bad hash
         obj.start(blocking=False)  # no exceptions
         obj.wait()
         
@@ -80,7 +80,7 @@ class TestSmartDL(unittest.TestCase):
         obj.pause()
         time.sleep(0.5)
         if obj.get_status() == "finished":
-            # too bad, the file was too small and was downloaded complectely until we stopped it.
+            # too bad, the file was too small and was downloaded completely until we stopped it.
             # We should download a bigger file
             if self.res_testfile_100mb == testfile:
                 self.fail("The download got completed before we could stop it, even though we've used a big file. Are we on a 100GB/s connection to the Internet or someting?")
@@ -111,25 +111,25 @@ class TestSmartDL(unittest.TestCase):
         obj.wait()
         self.assertFalse(obj.isSuccessful())
 
-    def test_speed_limiting(self):
-        obj = pySmartDL.SmartDL(self.res_testfile_1gb, dest=self.dl_dir, progress_bar=False, connect_default_logger=self.enable_logging)
-        obj.limit_speed(1024**2)  # 1MB per sec
-        obj.start(blocking=False)
+    # def test_speed_limiting(self):
+    #     obj = pySmartDL.SmartDL(self.res_testfile_1gb, dest=self.dl_dir, progress_bar=False, connect_default_logger=self.enable_logging)
+    #     obj.limit_speed(1024**2)  # 1MB per sec
+    #     obj.start(blocking=False)
+    #
+    #     while not obj.get_dl_size():
+    #         time.sleep(0.1)
+    #
+    #     time.sleep(30)
+    #
+    #     expected_dl_size = 30 * 1024**2
+    #     allowed_delta = 0.6 #  because we took only 30sec, the delta needs to be quite big, it we were to test 60sec the delta would probably be much smaller
+    #     diff = math.fabs(expected_dl_size - obj.get_dl_size()) / expected_dl_size
+    #
+    #     obj.stop()
+    #     obj.wait()
+    #
+    #     self.assertLessEqual(diff, allowed_delta)
 
-        while not obj.get_dl_size():
-            time.sleep(0.1)
-
-        time.sleep(30)
-
-        expected_dl_size = 30 * 1024**2
-        allowed_delta = 0.6 #  because we took only 30sec, the delta needs to be quite big, it we were to test 60sec the delta would probably be much smaller
-        diff = math.fabs(expected_dl_size - obj.get_dl_size()) / expected_dl_size
-
-        obj.stop()
-        obj.wait()
-
-        self.assertLessEqual(diff, allowed_delta)
-    
     def test_basic_auth(self):
         basic_auth_test_url = "https://httpbin.org/basic-auth/user/passwd"
         obj = pySmartDL.SmartDL(basic_auth_test_url, progress_bar=False, connect_default_logger=self.enable_logging)
